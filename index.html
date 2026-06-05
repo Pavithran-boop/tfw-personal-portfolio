@@ -45,7 +45,7 @@
                 <li><a href="#education" class="nav-link">EDUCATION</a></li>
                 <li><a href="#achievements" class="nav-link">ACHIEVEMENTS</a></li>
                 <li><a href="#ambition" class="nav-link">AMBITION</a></li>
-                <li><a href="#contact" class="nav-link">CONTACT</a></li>
+                <li><a href="#works" class="nav-link">WORKS</a></li>
             </ul>
         </nav>
     </header>
@@ -194,55 +194,64 @@
             </div>
         </section>
 
-        <!-- Section 5: Contact -->
-        <section id="contact" class="section contact-section" aria-label="Correspondence">
+        <!-- Section 5: Works / Collected Works -->
+        <section id="works" class="section works-section" aria-label="Collected Works">
             <div class="container section-container">
                 <div class="section-header fade-in">
                     <span class="section-num clip-mask"><span class="reveal-text">04</span></span>
-                    <h2 class="section-title"><span class="clip-mask"><span class="reveal-text">CORRESPONDENCE</span></span></h2>
+                    <h2 class="section-title"><span class="clip-mask"><span class="reveal-text">COLLECTED WORKS</span></span></h2>
                 </div>
                 
-                <div class="contact-grid grid-2">
-                    <div class="contact-info fade-in">
-                        <h3 class="contact-headline">Let’s Start a Conversation</h3>
-                        <p class="contact-lead-text">
-                            Whether you want to discuss the outer boundaries of the universe, plan a friendly football tournament, or explore academic collaborations.
+                <div class="works-layout">
+                    <!-- Intro Col -->
+                    <div class="works-intro-col fade-in">
+                        <span class="works-meta-tag">CURATED EXHIBITS</span>
+                        <h3 class="works-headline">Selected Projects, Essays & Leadership Logs</h3>
+                        <p class="works-lead-text">
+                            An overview of Pavithran's academic and extracurricular endeavors—spanning active space debris recovery proposals, football leadership records, and philosophical essays.
                         </p>
-                        <div class="contact-details-block">
-                            <span class="contact-label">EMAIL ADDRESS</span>
-                            <a href="mailto:pavithranbhagavan@gmail.com" class="email-link" id="email-contact">pavithranbhagavan@gmail.com</a>
-                        </div>
-                        <div class="contact-details-block">
-                            <span class="contact-label">LOCATION</span>
-                            <span class="contact-val">Bengaluru, India</span>
+                        <div class="works-featured-image reveal-image">
+                            <div class="geometric-art">
+                                <div class="art-circle"></div>
+                                <div class="art-line"></div>
+                                <div class="art-diagonal"></div>
+                                <div class="art-text">CELESTIAL / ATHLETIC</div>
+                            </div>
+                            <span class="image-credit">COMPOSITION: ARCHIVAL LABS</span>
                         </div>
                     </div>
                     
-                    <div class="contact-form-container fade-in">
-                        <form id="portfolio-contact-form" action="#" method="POST" class="vogue-form">
-                            <div class="form-group">
-                                <label for="form-name">YOUR NAME</label>
-                                <input type="text" id="form-name" name="name" required placeholder="Alexander Mercer">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="form-email">EMAIL ADDRESS</label>
-                                <input type="email" id="form-email" name="email" required placeholder="alexander@example.com">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="form-subject">INQUIRY SUBJECT</label>
-                                <input type="text" id="form-subject" name="subject" required placeholder="Astrophysics Collaboration / Football Match / General Inquiry">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="form-message">MESSAGE DESCRIPTION</label>
-                                <textarea id="form-message" name="message" rows="4" required placeholder="Write your letter here..."></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-submit" id="btn-submit-form">SEND CORRESPONDENCE</button>
-                        </form>
-                        <div id="form-status-message" class="form-status" aria-live="polite"></div>
+                    <!-- Items Col (asymmetric list) -->
+                    <div class="works-list-col fade-in">
+                        <!-- Item 1: Orbit-Clean -->
+                        <article class="works-item">
+                            <span class="works-item-num">01 / ASTRONOMY</span>
+                            <h4 class="works-item-title">Project Orbit-Clean</h4>
+                            <p class="works-item-desc">
+                                A comprehensive research proposal targeting Low Earth Orbit space debris recovery using passive electromagnetic sweepers. Presented at regional high school science symposiums.
+                            </p>
+                            <a href="#" class="works-item-link">READ THE RESEARCH PROPOSAL →</a>
+                        </article>
+                        
+                        <!-- Item 2: The Captain's Guide -->
+                        <article class="works-item">
+                            <span class="works-item-num">02 / LEADERSHIP</span>
+                            <h4 class="works-item-title">The First XI Playbook</h4>
+                            <p class="works-item-desc">
+                                Tactical diagrams, performance analyses, and communication logs curated during the 2025-2026 football season as Chrysalis High team captain.
+                            </p>
+                            <a href="#" class="works-item-link">VIEW ATHLETIC LOGS →</a>
+                        </article>
+                        
+                        <!-- Item 3: Essays -->
+                        <article class="works-item">
+                            <span class="works-item-num">03 / LITERARY</span>
+                            <h4 class="works-item-title">Stardust & Stewardship</h4>
+                            <p class="works-item-desc">
+                                A compilation of award-winning essays examining the ethical limits of planetary resource exploitation and the role of youth in local astronomy initiatives.
+                            </p>
+                            <a href="#" class="works-item-link">READ SELECTED ESSAYS →</a>
+                        </article>
                     </div>
                 </div>
             </div>
@@ -253,13 +262,26 @@
     <footer class="vogue-footer">
         <div class="container footer-container">
             <div class="footer-top">
-                <span class="footer-logo">P. B.</span>
-                <ul class="social-links">
-                    <li><a href="#" class="social-link" target="_blank" rel="noopener">INSTAGRAM</a></li>
-                    <li><a href="#" class="social-link" target="_blank" rel="noopener">LINKEDIN</a></li>
-                    <li><a href="#" class="social-link" target="_blank" rel="noopener">FOOTBALL CLUB</a></li>
-                    <li><a href="#" class="social-link" target="_blank" rel="noopener">ACADEMIA</a></li>
-                </ul>
+                <div class="footer-brand-col">
+                    <span class="footer-logo">P. B.</span>
+                    <p class="footer-tagline">Academic, Athlete & Aspiring Astrophysicist</p>
+                </div>
+                
+                <div class="footer-contact-col">
+                    <span class="footer-label">CORRESPONDENCE</span>
+                    <a href="mailto:pavithranbhagavan@gmail.com" class="footer-email">pavithranbhagavan@gmail.com</a>
+                    <span class="footer-location">Bengaluru, India</span>
+                </div>
+                
+                <div class="footer-social-col">
+                    <span class="footer-label">CHANNELS</span>
+                    <ul class="social-links">
+                        <li><a href="#" class="social-link" target="_blank" rel="noopener">INSTAGRAM</a></li>
+                        <li><a href="#" class="social-link" target="_blank" rel="noopener">LINKEDIN</a></li>
+                        <li><a href="#" class="social-link" target="_blank" rel="noopener">FOOTBALL CLUB</a></li>
+                        <li><a href="#" class="social-link" target="_blank" rel="noopener">ACADEMIA</a></li>
+                    </ul>
+                </div>
             </div>
             <hr class="footer-divider">
             <div class="footer-bottom">

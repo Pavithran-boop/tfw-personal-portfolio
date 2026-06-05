@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initParallaxEffects();
     initActiveNavTracking();
-    initContactForm();
 });
 
 /**
@@ -144,70 +143,4 @@ function initActiveNavTracking() {
             });
         }
     });
-}
-
-/**
- * Handles validation and submission styling of the editorial Correspondence Form
- */
-function initContactForm() {
-    const form = document.getElementById('portfolio-contact-form');
-    const statusMsg = document.getElementById('form-status-message');
-    
-    if (!form || !statusMsg) return;
-    
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        
-        // Simple form validation check
-        const name = document.getElementById('form-name').value.trim();
-        const email = document.getElementById('form-email').value.trim();
-        const subject = document.getElementById('form-subject').value.trim();
-        const message = document.getElementById('form-message').value.trim();
-        
-        if (!name || !email || !subject || !message) {
-            showFormStatus('Please fill in all correspondence fields.', 'error');
-            return;
-        }
-        
-        // Visual feedback for submitting state
-        const submitBtn = form.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'SENDING...';
-        submitBtn.disabled = true;
-        
-        // Simulate a premium, secure API dispatch
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            
-            // Clear fields on successful "send"
-            form.reset();
-            showFormStatus('Correspondence sent successfully. Pavithran will respond shortly.', 'success');
-        }, 1200);
-    });
-}
-
-/**
- * Displays user feedback on form submission status
- */
-function showFormStatus(message, type) {
-    const statusMsg = document.getElementById('form-status-message');
-    statusMsg.textContent = message;
-    statusMsg.className = 'form-status'; // Reset classes
-    
-    if (type === 'success') {
-        statusMsg.classList.add('success');
-    } else if (type === 'error') {
-        statusMsg.classList.add('error');
-    }
-    
-    // Smooth clear after 6 seconds
-    setTimeout(() => {
-        statusMsg.style.opacity = '0';
-        setTimeout(() => {
-            statusMsg.textContent = '';
-            statusMsg.className = 'form-status';
-            statusMsg.style.opacity = '1';
-        }, 300);
-    }, 6000);
 }
