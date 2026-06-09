@@ -1,34 +1,46 @@
 /* ==========================================================================
-   VOGUE-INSPIRED PREMIUM PORTFOLIO DESIGN SYSTEM
+   VOGUE EDITORIAL CORE DESIGN SYSTEM & LIQUID MOTION TOKENS
    ========================================================================== */
 
-/* --- Custom Variables & Tokens --- */
 :root {
-    --bg-primary: #FAF9F5;       /* Pure Ivory / Warm White */
-    --bg-secondary: #F4F2EB;     /* Deeper Linen / Light Beige */
-    --text-primary: #0F0F10;     /* Rich Black / Soft Obsidian */
-    --text-secondary: #4A4A4D;   /* Classic Charcoal */
-    --accent-gold: #9D845D;      /* Luxe Muted Gold */
-    --accent-gold-hover: #7F6A4A;
-    --border-color: #E2DDD5;     /* Fine linen divider line */
-    --border-dark: #2A2A2D;
-    
-    /* Dark Mode (Used for Ambition Section) */
-    --bg-dark: #0B0C0E;          /* Midnight Velvet */
-    --text-dark-primary: #F3F3F5;/* Bright Ivory */
-    --text-dark-secondary: #A0A0A5;/* Muted Grey */
-    
-    /* Typography */
+    --bg-primary: #FAF9F5;
+    /* Pure Ivory / Warm White */
+    --bg-secondary: #F4F2EB;
+    /* Deeper Linen / Light Beige */
+    --text-primary: #0F0F10;
+    /* Rich Black / Soft Obsidian */
+    --text-secondary: #2D2D30;
+    /* Highly readable Charcoal */
+    --accent-gold: #9D845D;
+    /* Luxe Muted Gold */
+    --border-color: #E2DDD5;
+    /* Fine linen divider line */
+    --border-dark: #262930;
+    /* Dark section rules */
+
+    /* Dark Mode (Ambition) */
+    --bg-dark: #0B0C0E;
+    /* Midnight Velvet */
+    --text-dark-primary: #F3F3F5;
+    /* Bright Ivory */
+    --text-dark-secondary: #A0A0A5;
+    /* Muted Grey */
+
+    /* Typography Matrix */
     --font-serif: 'Bodoni Moda', Georgia, serif;
-    --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    
-    /* Transitions */
-    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-fast: all 0.3s ease;
+    --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* High-Fidelity Fluid Motion Bezier Curves */
+    --ease-vogue: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-gundam: cubic-bezier(0.19, 1, 0.22, 1);
+    --transition-smooth: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* --- Base Reset & General Styles --- */
-*, *::before, *::after {
+/* --- Base Normalizations --- */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -48,27 +60,96 @@ body {
     overflow-x: hidden;
 }
 
-/* --- Typographical Hierarchy --- */
-h1, h2, h3, h4, h5, h6 {
+/* --- Kinetic Preloader System --- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    visibility: visible;
+}
+
+.preloader-bg-shutter {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50.5%;
+    background-color: var(--bg-primary);
+    transition: transform 1.1s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.preloader-bg-shutter.top {
+    top: 0;
+    transform-origin: top;
+}
+
+.preloader-bg-shutter.bottom {
+    bottom: 0;
+    transform-origin: bottom;
+}
+
+.preloader-content {
+    position: relative;
+    z-index: 10002;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+.preloader-edition {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--accent-gold);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.preloader-brand {
     font-family: var(--font-serif);
+    font-size: 2.8rem;
+    letter-spacing: 0.1em;
     font-weight: 400;
-    color: var(--text-primary);
 }
 
-p {
-    font-size: 0.95rem;
-    font-weight: 400;
+.preloader-sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
     color: var(--text-secondary);
-    line-height: 1.8;
+    display: block;
+    margin-top: 1rem;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-    transition: var(--transition-fast);
+/* Preloader Dismissal Animation Trigger */
+.preloader.fade-out .preloader-content {
+    opacity: 0;
 }
 
-/* --- Reusable Components & Containers --- */
+.preloader.fade-out .preloader-bg-shutter.top {
+    transform: scaleY(0);
+}
+
+.preloader.fade-out .preloader-bg-shutter.bottom {
+    transform: scaleY(0);
+}
+
+/* --- Fixed Top Progress Element --- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-gold), #D4AF37);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
+/* --- Layout Elements --- */
 .container {
     width: 90%;
     max-width: 1280px;
@@ -79,6 +160,7 @@ a {
 .section {
     padding: 8rem 0;
     border-bottom: 1px solid var(--border-color);
+    position: relative;
 }
 
 .grid-2 {
@@ -93,73 +175,7 @@ a {
     gap: 3rem;
 }
 
-/* Section Header standard */
-.section-header {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 4rem;
-    position: relative;
-}
-
-.section-num {
-    font-family: var(--font-serif);
-    font-size: 4.5rem;
-    color: var(--text-primary);
-    opacity: 0.15;
-    margin-right: 1.5rem;
-    line-height: 1;
-}
-
-.section-title {
-    font-size: 1.75rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-primary);
-}
-
-/* --- Buttons & Interactive Anchors --- */
-.btn {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 1.2rem 2.5rem;
-    border: 1px solid var(--text-primary);
-    background: transparent;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary {
-    background-color: var(--text-primary);
-    color: var(--bg-primary);
-}
-
-.btn-primary:hover {
-    background-color: transparent;
-    color: var(--text-primary);
-    border-color: var(--text-primary);
-}
-
-.btn-submit {
-    background-color: var(--text-primary);
-    color: var(--bg-primary);
-    border: none;
-    width: 100%;
-    padding: 1.2rem;
-}
-
-.btn-submit:hover {
-    background-color: var(--accent-gold);
-    color: white;
-}
-
-/* --- Vogue Header & Navigation Layout --- */
+/* --- Vogue Typography Header System --- */
 .vogue-header {
     background-color: var(--bg-primary);
     border-bottom: 1px solid var(--border-color);
@@ -177,7 +193,8 @@ a {
     padding-bottom: 2rem;
 }
 
-.edition-tag, .vol-tag {
+.edition-tag,
+.vol-tag {
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.25em;
@@ -193,27 +210,23 @@ a {
     text-align: right;
 }
 
-.brand-container {
-    text-align: center;
-}
-
 .logo-main {
+    font-family: var(--font-serif);
     font-size: 5.5rem;
     font-weight: 800;
     letter-spacing: 0.12em;
     line-height: 0.9;
-    margin-bottom: 0.2rem;
     text-transform: uppercase;
 }
 
 .logo-sub {
+    font-family: var(--font-serif);
     font-size: 1.8rem;
     font-weight: 400;
     letter-spacing: 0.45em;
     text-transform: uppercase;
-    color: var(--text-primary);
     line-height: 1;
-    text-indent: 0.45em; /* Alignment correction for letter-spacing */
+    text-indent: 0.45em;
 }
 
 .vogue-nav {
@@ -227,6 +240,7 @@ a {
     display: flex;
     justify-content: center;
     gap: 3.5rem;
+    flex-wrap: wrap;
 }
 
 .nav-link {
@@ -250,17 +264,37 @@ a {
     transition: var(--transition-fast);
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--text-primary);
 }
 
-.nav-link.active::after, .nav-link:hover::after {
+.nav-link.active::after,
+.nav-link:hover::after {
     width: 100%;
 }
 
-/* --- Section 1: Hero Cover Story --- */
-.hero-section {
-    background-color: var(--bg-primary);
+/* --- Structural Content Blocks --- */
+.section-header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 4rem;
+}
+
+.section-num {
+    font-family: var(--font-serif);
+    font-size: 4.5rem;
+    opacity: 0.15;
+    margin-right: 1.5rem;
+    line-height: 1;
+    display: inline-block;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: inline-block;
 }
 
 .hero-container {
@@ -270,25 +304,12 @@ a {
     align-items: center;
 }
 
-.hero-text-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.section-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    color: var(--accent-gold);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-}
-
 .hero-headline {
+    font-family: var(--font-serif);
     font-size: 4rem;
     line-height: 1.1;
     margin-bottom: 2rem;
+    font-weight: 400;
 }
 
 .hero-lead {
@@ -302,37 +323,30 @@ a {
 
 .hero-body {
     margin-bottom: 2.5rem;
-}
-
-.hero-cta-container {
-    margin-top: 1rem;
-}
-
-.hero-image-col {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    color: var(--text-secondary);
 }
 
 .image-wrapper {
     border: 1px solid var(--border-color);
     padding: 1.5rem;
-    background-color: white;
+    background-color: #FFF;
     width: 100%;
     max-width: 480px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    overflow: hidden;
 }
 
 .hero-img {
     width: 100%;
     height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
     display: block;
     filter: grayscale(15%);
     transition: var(--transition-smooth);
 }
 
 .hero-img:hover {
-    filter: grayscale(0%);
+    filter: grayscale(0%) scale(1.03);
 }
 
 .image-credit {
@@ -352,13 +366,32 @@ a {
     border-left: 2px solid var(--accent-gold);
 }
 
-.image-caption p {
+.btn {
+    display: inline-block;
     font-size: 0.8rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.2rem 2.5rem;
+    border: 1px solid var(--text-primary);
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition-fast);
 }
 
-/* --- Section 2: Education (Academic Foundation) --- */
+.btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Section 2 & 3 Foundations --- */
 .education-section {
     background-color: var(--bg-secondary);
 }
@@ -368,17 +401,8 @@ a {
     font-size: 2.2rem;
     font-style: italic;
     line-height: 1.4;
-    color: var(--text-primary);
     border-left: 3px solid var(--accent-gold);
     padding-left: 2rem;
-    margin-top: 1rem;
-}
-
-.education-details {
-    padding-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .institution-name {
@@ -392,10 +416,6 @@ a {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--accent-gold);
-    margin-bottom: 2rem;
-}
-
-.education-desc {
     margin-bottom: 2rem;
 }
 
@@ -418,11 +438,6 @@ a {
     color: var(--accent-gold);
 }
 
-/* --- Section 3: Achievements (The Laurels) --- */
-.achievements-grid {
-    margin-top: 2rem;
-}
-
 .achievement-card {
     border-left: 1px solid var(--border-color);
     padding: 1.5rem 0 2rem 2rem;
@@ -431,15 +446,14 @@ a {
 
 .achievement-card:hover {
     border-left-color: var(--accent-gold);
-    transform: translateX(5px);
+    transform: translateX(8px);
 }
 
 .card-num {
     font-family: var(--font-serif);
     font-size: 2.5rem;
     color: var(--accent-gold);
-    margin-bottom: 1rem;
-    line-height: 1;
+    margin-bottom: 0.5rem;
 }
 
 .card-title {
@@ -456,11 +470,7 @@ a {
     margin-bottom: 1.5rem;
 }
 
-.card-body {
-    font-size: 0.9rem;
-}
-
-/* --- Section 4: Ambition (Cosmic Horizon) --- */
+/* --- Section 4: Ambition --- */
 .ambition-section.dark-theme {
     background-color: var(--bg-dark);
     color: var(--text-dark-primary);
@@ -476,10 +486,6 @@ a {
     opacity: 0.4;
 }
 
-.ambition-content {
-    margin-top: 2rem;
-}
-
 .ambition-tagline {
     font-size: 0.85rem;
     font-weight: 700;
@@ -490,10 +496,10 @@ a {
 }
 
 .ambition-quote {
+    font-family: var(--font-serif);
     font-size: 3rem;
     line-height: 1.3;
     font-style: italic;
-    color: var(--text-dark-primary);
     margin-bottom: 4rem;
     max-width: 90%;
 }
@@ -503,16 +509,11 @@ a {
     padding-top: 3rem;
 }
 
-.ambition-col-left .ambition-text {
+.ambition-text {
     color: var(--text-dark-secondary);
     font-size: 1rem;
     line-height: 1.9;
     padding-right: 3rem;
-}
-
-.ambition-col-right {
-    display: flex;
-    flex-direction: column;
 }
 
 .ambition-sub {
@@ -551,21 +552,11 @@ a {
     color: var(--text-dark-secondary);
 }
 
-/* --- Section 5: Works (Collected Works) --- */
-.works-section {
-    background-color: var(--bg-primary);
-}
-
+/* --- Section 5: Collected Works --- */
 .works-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 6rem;
-    align-items: flex-start;
-}
-
-.works-intro-col {
-    display: flex;
-    flex-direction: column;
 }
 
 .works-meta-tag {
@@ -584,7 +575,6 @@ a {
 }
 
 .works-lead-text {
-    font-size: 1.05rem;
     margin-bottom: 3rem;
 }
 
@@ -592,502 +582,464 @@ a {
     width: 100%;
     max-width: 440px;
     border: 1px solid var(--border-color);
-    padding: 1.5rem;
-    background-color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    padding: 2rem;
+    background: var(--bg-secondary);
+    overflow: hidden;
 }
 
-/* Premium Geometric Art Illustration */
 .geometric-art {
     width: 100%;
     height: 250px;
-    background-color: var(--bg-dark);
-    position: relative;
-    overflow: hidden;
+    border: 1px dashed var(--accent-gold);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    transition: var(--transition-smooth);
-}
-
-.geometric-art:hover {
-    transform: scale(1.02);
+    justify-content: center;
+    position: relative;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-gold);
+    gap: 10px;
 }
 
 .art-circle {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    border: 1px solid rgba(157, 132, 93, 0.4);
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--accent-gold);
     border-radius: 50%;
-    animation: rotateCircle 20s linear infinite;
 }
 
-.art-line {
-    position: absolute;
-    width: 180px;
-    height: 1px;
-    background-color: rgba(243, 243, 245, 0.15);
-}
-
-.art-diagonal {
-    position: absolute;
-    width: 200px;
-    height: 1px;
-    background-color: var(--accent-gold);
-    transform: rotate(45deg);
-    opacity: 0.6;
-}
-
-.art-text {
-    font-family: var(--font-sans);
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    color: var(--text-dark-primary);
-    z-index: 2;
-    text-transform: uppercase;
-}
-
-@keyframes rotateCircle {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Works list styling */
 .works-list-col {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3.5rem;
 }
 
 .works-item {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 2.5rem;
-    transition: var(--transition-smooth);
 }
 
 .works-item:last-child {
     border-bottom: none;
-    padding-bottom: 0;
-}
-
-.works-item:hover {
-    transform: translateY(-5px);
 }
 
 .works-item-num {
-    display: block;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.15em;
     color: var(--accent-gold);
-    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
 }
 
 .works-item-title {
     font-size: 1.8rem;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0 1rem 0;
 }
 
 .works-item-desc {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
     margin-bottom: 1.5rem;
-    line-height: 1.7;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
 }
 
 .works-item-link {
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     color: var(--text-primary);
-    position: relative;
-    padding-bottom: 0.2rem;
     display: inline-block;
-}
-
-.works-item-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: var(--text-primary);
-    transform: scaleX(0.3);
-    transform-origin: left;
-    transition: var(--transition-fast);
-}
-
-.works-item:hover .works-item-link::after {
-    transform: scaleX(1);
 }
 
 .works-item-link:hover {
     color: var(--accent-gold);
+    transform: translateX(5px);
 }
 
-.works-item-link:hover::after {
-    background-color: var(--accent-gold);
-}
-
-/* Updated Vogue Footer Layout */
+/* --- Archival Footer Block --- */
 .vogue-footer {
-    background-color: var(--bg-primary);
-    padding: 5rem 0 3rem 0;
-    border-top: 1px solid var(--border-color);
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    padding: 5rem 0 2rem 0;
+    margin-top: 4rem;
 }
 
 .footer-top {
     display: grid;
-    grid-template-columns: 1.2fr 1fr 1.2fr;
+    grid-template-columns: 1.5fr 1fr 1fr;
     gap: 4rem;
-    align-items: flex-start;
+    margin-bottom: 3rem;
 }
 
-.footer-brand-col {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.footer-logo {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
 }
 
 .footer-tagline {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    max-width: 250px;
-    line-height: 1.6;
-}
-
-.footer-contact-col {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-dark-secondary);
+    margin-top: 0.5rem;
 }
 
 .footer-label {
     display: block;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.2em;
     color: var(--accent-gold);
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
+    margin-bottom: 1.5rem;
 }
 
 .footer-email {
     font-family: var(--font-serif);
-    font-size: 1.35rem;
-    color: var(--text-primary);
-    border-bottom: 1px solid var(--text-primary);
-    padding-bottom: 0.2rem;
-    align-self: flex-start;
-    transition: var(--transition-fast);
-    word-break: break-all;
-}
-
-.footer-email:hover {
-    color: var(--accent-gold);
-    border-bottom-color: var(--accent-gold);
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--bg-primary);
 }
 
 .footer-location {
     font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--text-secondary);
+    color: var(--text-dark-secondary);
+    display: block;
 }
 
-.footer-social-col {
+.social-links {
+    list-style: none;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    gap: 0.6rem;
 }
 
-.footer-social-col .social-links {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.8rem;
+.social-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dark-secondary);
 }
 
-/* --- Preloader & Entrance Transitions --- */
-.preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--bg-primary);
-    z-index: 10000;
+.social-link:hover {
+    color: var(--bg-primary);
+}
+
+.footer-divider {
+    border: 0;
+    border-top: 1px solid var(--border-dark);
+    margin-bottom: 2rem;
+}
+
+.footer-bottom {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
-    transform-origin: top;
-}
-
-.preloader.fade-out {
-    transform: translateY(-100%);
-}
-
-.preloader-content {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.preloader-edition, .preloader-sub {
     font-size: 0.75rem;
+    color: var(--text-dark-secondary);
+}
+
+.back-to-top {
+    color: var(--accent-gold);
     font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    letter-spacing: 0.1em;
 }
 
-.preloader-brand {
-    font-family: var(--font-serif);
-    font-size: 3rem;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-primary);
+.back-to-top:hover {
+    color: var(--bg-primary);
+}
+
+/* ==========================================================================
+   VOGUE EDITORIAL ANIMATION ENGINE (SLIDE REVEALS & SLIT MASKS)
+   ========================================================================== */
+
+/* Slit Mask Typography Container */
+.clip-mask {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Base states for layout elements (Before Entering Scroll Viewport) */
+.reveal-text {
+    display: block;
     transform: translateY(105%);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 1.2s var(--ease-vogue);
 }
 
-.preloader.active .preloader-brand {
-    transform: translateY(0);
-}
-
-.preloader.active .preloader-edition, 
-.preloader.active .preloader-sub {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.5s;
-}
-
-/* Header Slide-Down Entrance */
-.vogue-header {
-    opacity: 0;
-    transform: translateY(-30px);
-    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-    transition-delay: 0.2s;
-}
-
-body.loaded .vogue-header {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- Scroll Animations & Visual Reveals --- */
-.scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background-color: var(--accent-gold);
-    z-index: 9999;
-    transition: width 0.1s ease-out;
-}
-
-.fade-in {
+.anim-slide-up {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
+    transition: opacity 1s var(--ease-vogue), transform 1s var(--ease-vogue);
 }
 
-.fade-in.visible {
+/* Sequential Stagger Delays managed gracefully by layout parent classes */
+.layout-reveal.visible .reveal-text {
+    transform: translateY(0);
+}
+
+.layout-reveal.visible .anim-slide-up {
     opacity: 1;
     transform: translateY(0);
 }
 
-.clip-mask {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: bottom;
+.layout-reveal.visible .anim-slide-up:nth-child(1) {
+    transition-delay: 0.1s;
 }
 
-.reveal-text {
-    display: inline-block;
-    transform: translateY(105%);
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
+.layout-reveal.visible .anim-slide-up:nth-child(2) {
+    transition-delay: 0.25s;
 }
 
-.reveal-text.visible {
-    transform: translateY(0);
+.layout-reveal.visible .anim-slide-up:nth-child(3) {
+    transition-delay: 0.4s;
 }
 
-/* Image reveal curtain effect */
-.reveal-image {
+.layout-reveal.visible .anim-slide-up:nth-child(4) {
+    transition-delay: 0.55s;
+}
+
+/* Elegant Editorial Curtain Image Reveal */
+.reveal-image-frame {
     position: relative;
     overflow: hidden;
 }
 
-.reveal-image::after {
+.reveal-image-frame::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--bg-secondary);
-    transition: transform 1.4s cubic-bezier(0.85, 0, 0.15, 1);
-    transform-origin: right;
+    background-color: var(--accent-gold);
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
     z-index: 2;
 }
 
-.reveal-image.visible::after {
+.reveal-image-frame img,
+.reveal-image-frame .geometric-art {
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 0.1s linear 0.4s, transform 1.2s var(--ease-vogue) 0.4s;
+}
+
+/* Active State for Image Framing */
+.reveal-image-frame.visible::after {
     transform: scaleX(0);
 }
 
-.reveal-image img {
-    transform: scale(1.15);
-    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-image.visible img {
+.reveal-image-frame.visible img,
+.reveal-image-frame.visible .geometric-art {
+    opacity: 1;
     transform: scale(1);
 }
 
-/* Delay for staggered columns */
-.grid-3 .achievement-card:nth-child(1) { transition-delay: 0.1s; }
-.grid-3 .achievement-card:nth-child(2) { transition-delay: 0.3s; }
-.grid-3 .achievement-card:nth-child(3) { transition-delay: 0.5s; }
+/* ==========================================================================
+   GUNDAM HUD TARGET-LOCK MECHA SYSTEM INTERACTION MATRIX
+   ========================================================================== */
+.gundam-hud-trigger {
+    position: relative;
+}
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 1024px) {
-    .logo-main {
-        font-size: 4rem;
+.hud-bracket {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0 solid var(--accent-gold);
+    opacity: 0;
+    z-index: 5;
+    transition: width 0.6s var(--ease-gundam),
+        height 0.6s var(--ease-gundam),
+        opacity 0.3s ease,
+        transform 0.6s var(--ease-gundam);
+}
+
+/* Mechanical outward displacement paths */
+.hud-bracket.top-left {
+    top: -20px;
+    left: -20px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    transform: translate(-25px, -25px);
+}
+
+.hud-bracket.top-right {
+    top: -20px;
+    right: -20px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    transform: translate(25px, -25px);
+}
+
+.hud-bracket.bottom-left {
+    bottom: -20px;
+    left: -20px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    transform: translate(-25px, 25px);
+}
+
+.hud-bracket.bottom-right {
+    bottom: -20px;
+    right: -20px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+    transform: translate(25px, 25px);
+}
+
+/* Horizontal Laser Sync Tracker */
+.hud-laser-line {
+    position: absolute;
+    top: -20px;
+    left: 5%;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold), #FFF, var(--accent-gold), transparent);
+    transition: width 1s var(--ease-gundam);
+    opacity: 0;
+}
+
+/* Center Coordinate Alignment Target Grid */
+.hud-crosshair {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transform: scale(2) rotate(45deg);
+    transition: transform 0.8s var(--ease-gundam), opacity 0.4s ease;
+}
+
+.hud-crosshair::before,
+.hud-crosshair::after {
+    content: '';
+    position: absolute;
+    background-color: var(--accent-gold);
+}
+
+.hud-crosshair::before {
+    top: 9px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+
+.hud-crosshair::after {
+    top: 0;
+    left: 9px;
+    width: 2px;
+    height: 100%;
+}
+
+/* --- HUD TRIGGERED ACTIVE SYSTEM STATES --- */
+.gundam-hud-trigger.visible .hud-bracket {
+    width: 35px;
+    height: 35px;
+    opacity: 1;
+    transform: translate(0, 0);
+    animation: hudGleam 0.15s steps(2) 0.6s infinite alternate;
+    /* Post-lock tech hum simulation */
+}
+
+.gundam-hud-trigger.visible .hud-laser-line {
+    width: 90%;
+    opacity: 1;
+}
+
+.gundam-hud-trigger.visible .hud-crosshair {
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
+}
+
+@keyframes hudGleam {
+    0% {
+        border-color: var(--accent-gold);
     }
-    .hero-headline {
-        font-size: 3rem;
-    }
-    .education-quote blockquote {
-        font-size: 1.8rem;
-    }
-    .ambition-quote {
-        font-size: 2.2rem;
-        max-width: 100%;
+
+    100% {
+        border-color: #FFF;
     }
 }
 
-@media (max-width: 768px) {
-    .section {
-        padding: 5rem 0;
+/* ==========================================================================
+   PRODUCTION MEDIA RESPONSIVE MATRIX
+   ========================================================================== */
+@media (max-width: 992px) {
+    html {
+        font-size: 15px;
     }
-    
-    .grid-2 {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+
+    .grid-2,
+    .grid-3,
+    .hero-container,
+    .works-layout,
+    .footer-top {
+        grid-template-columns: 1fr !important;
+        gap: 4rem !important;
     }
-    
-    .grid-3 {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
+
     .header-top {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
     }
-    
-    .edition-tag, .vol-tag {
+
+    .edition-tag,
+    .vol-tag {
         text-align: center;
     }
-    
-    .logo-main {
-        font-size: 3.2rem;
+
+    .education-details,
+    .achievement-card {
+        padding-left: 0 !important;
+        border-left: none;
     }
-    
+
+    .achievement-card {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 2rem;
+    }
+
+    .vogue-nav ul {
+        gap: 1.5rem 2rem;
+    }
+
+    .hud-bracket,
+    .hud-laser-line,
+    .hud-crosshair {
+        display: none !important;
+    }
+
+    /* Strips mecha system on compact mobile viewports to ensure clean execution bounds */
+}
+
+@media (max-width: 600px) {
+    .logo-main {
+        font-size: 3.4rem !important;
+    }
+
     .logo-sub {
-        font-size: 1.3rem;
+        font-size: 1.3rem !important;
         letter-spacing: 0.3em;
         text-indent: 0.3em;
     }
-    
-    .vogue-nav ul {
-        flex-wrap: wrap;
-        gap: 1.5rem;
+
+    .hero-headline {
+        font-size: 2.4rem !important;
     }
-    
-    .hero-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+
+    .ambition-quote {
+        font-size: 1.9rem !important;
     }
-    
-    .hero-image-col {
-        order: -1; /* Image appears first on mobile screens */
-        align-items: center;
+
+    .section {
+        padding: 4.5rem 0 !important;
     }
-    
-    .education-details {
-        padding-left: 0;
-    }
-    
-    .achievement-card {
-        padding-left: 1.5rem;
-        border-left: 1px solid var(--border-color);
-    }
-    
-    .ambition-details-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    
-    .ambition-col-left .ambition-text {
-        padding-right: 0;
-    }
-    
-    .works-layout {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-    
-    .works-featured-image {
-        max-width: 100%;
-    }
-    
-    .footer-top {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        text-align: center;
-    }
-    
-    .footer-brand-col {
-        align-items: center;
-    }
-    
-    .footer-contact-col {
-        align-items: center;
-    }
-    
-    .footer-email {
-        align-self: center;
-    }
-    
-    .footer-social-col {
-        align-items: center;
-    }
-    
-    .footer-social-col .social-links {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1.5rem;
-    }
-    
+
     .footer-bottom {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
         text-align: center;
     }
 }

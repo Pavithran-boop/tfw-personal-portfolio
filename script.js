@@ -1,6 +1,6 @@
 /**
- * Pavithran Bhagavan — Personal Portfolio Logic
- * Custom interactions, scroll animations, navigation states, and correspondence forms.
+ * Pavithran Bhagavan — Personal Portfolio Premium Logic System
+ * Optimized frame throttling, hardware-accelerated scroll reveal transitions, and navigation syncing.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,135 +12,158 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Triggers the luxury fullscreen preloader intro animation when the site loads
+ * Executes a premium split shutter preloader dismissing sequence
  */
 function initPreloader() {
     const preloader = document.getElementById('vogue-preloader');
     if (!preloader) return;
-    
-    // Prevent scrolling while preloader is active
-    document.body.style.overflow = 'hidden';
-    
-    // Animate content entrance inside preloader
-    setTimeout(() => {
-        preloader.classList.add('active');
-    }, 200);
-    
-    // Dismiss preloader and restore scrolling
+
+    // Smooth scroll containment lockout
+    document.documentElement.classList.add('is-locked');
+
     setTimeout(() => {
         preloader.classList.add('fade-out');
-        document.body.classList.add('loaded');
-        document.body.style.overflow = '';
-        
-        // Remove preloader element from DOM after transition completes
+        document.documentElement.classList.remove('is-locked');
+
         setTimeout(() => {
             preloader.remove();
-            // Force scroll dispatch to run IntersectionObserver checking instantly
-            window.dispatchEvent(new Event('scroll'));
+            // Dispatches single safe canvas draw sequence instantly to lock scroll assets in place
+            window.requestAnimationFrame(() => {
+                window.dispatchEvent(new Event('scroll'));
+            });
         }, 1200);
-    }, 2800);
+    }, 2600);
 }
 
 /**
- * Creates and updates a premium scroll progress bar at the top of the viewport
+ * Renders a high-precision, frame-throttled visual reading progress tracking line
  */
 function initScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.className = 'scroll-progress';
-    document.body.appendChild(progressBar);
-    
+    const progressBar = document.querySelector('.scroll-progress');
+    if (!progressBar) return;
+
+    let isProgressThrottled = false;
+
     window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = scrollPercent + '%';
-    });
+        if (!isProgressThrottled) {
+            window.requestAnimationFrame(() => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = `${scrollPercent}%`;
+                isProgressThrottled = false;
+            });
+            isProgressThrottled = true;
+        }
+    }, { passive: true });
 }
 
 /**
- * Scroll Animations using IntersectionObserver
- * Detects elements with '.fade-in', '.reveal-text', or '.reveal-image' class and makes them visible.
+ * Hardware-Accelerated Intersection Observer Reveal Pipeline
+ * Manages Slit Masks, Curtain Image Reveals, and Gundam HUD targeting assemblies concurrently.
  */
 function initScrollAnimations() {
-    const animElements = document.querySelectorAll('.fade-in, .reveal-text, .reveal-image');
-    
+    const animElements = document.querySelectorAll('.layout-reveal, .reveal-image-frame, .gundam-hud-trigger');
+
     if ('IntersectionObserver' in window) {
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -80px 0px', // Trigger slightly before scrolling past
+            rootMargin: '0px 0px -120px 0px', // Deploys layouts elegantly right before crossing viewport boundaries
             threshold: 0.1
         };
-        
+
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Once visible, stop observing
+                    // Stop watching once active to conserve hardware threads
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
-        
-        animElements.forEach(element => {
-            observer.observe(element);
-        });
+
+        animElements.forEach(element => observer.observe(element));
     } else {
-        // Fallback for older browsers
-        animElements.forEach(element => {
-            element.classList.add('visible');
-        });
+        // Safe immediate loading backup fallback for older rendering engines
+        animElements.forEach(element => element.classList.add('visible'));
     }
 }
 
 /**
- * Subtle parallax effects on editorial columns for premium movement depth
+ * Smooth Desktop Parallax Layering System
  */
 function initParallaxEffects() {
     const heroImageCol = document.querySelector('.hero-image-col');
     const heroTextCol = document.querySelector('.hero-text-col');
-    
-    if (window.innerWidth > 768) { // Only run parallax on desktop viewports
-        window.addEventListener('scroll', () => {
-            const scrollVal = window.scrollY;
-            
-            // Offset scroll heights to create premium layout layer depth
-            if (heroImageCol) {
-                heroImageCol.style.transform = `translateY(${scrollVal * 0.08}px)`;
-            }
-            if (heroTextCol) {
-                heroTextCol.style.transform = `translateY(${scrollVal * -0.02}px)`;
-            }
-        });
+    const mediaQuery = window.matchMedia('(min-width: 993px)');
+    let isParallaxThrottled = false;
+
+    function renderParallax() {
+        const scrollVal = window.scrollY;
+        if (heroImageCol) heroImageCol.style.transform = `translateY(${scrollVal * 0.05}px)`;
+        if (heroTextCol) heroTextCol.style.transform = `translateY(${scrollVal * -0.015}px)`;
     }
+
+    function scrollThrottler() {
+        if (!isParallaxThrottled) {
+            window.requestAnimationFrame(() => {
+                renderParallax();
+                isParallaxThrottled = false;
+            });
+            isParallaxThrottled = true;
+        }
+    }
+
+    function handleViewportChange(e) {
+        if (e.matches) {
+            window.addEventListener('scroll', scrollThrottler, { passive: true });
+        } else {
+            window.removeEventListener('scroll', scrollThrottler);
+            if (heroImageCol) heroImageCol.style.transform = '';
+            if (heroTextCol) heroTextCol.style.transform = '';
+        }
+    }
+
+    mediaQuery.addEventListener('change', handleViewportChange);
+    if (mediaQuery.matches) window.addEventListener('scroll', scrollThrottler, { passive: true });
 }
 
 /**
- * Tracks scroll position to highlight the active section link in navigation
+ * Tracks viewport layout metrics to update primary header navigation highlights cleanly
  */
 function initActiveNavTracking() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+    const header = document.getElementById('header');
+    let isNavThrottled = false;
+
     window.addEventListener('scroll', () => {
-        let currentSectionId = '';
-        const scrollPosition = window.scrollY + 200; // Offset for header height
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < (sectionTop + sectionHeight)) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
-        
-        if (currentSectionId) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSectionId}`) {
-                    link.classList.add('active');
+        if (!isNavThrottled) {
+            window.requestAnimationFrame(() => {
+                let currentSectionId = '';
+                const basePaddingOffset = header ? header.offsetHeight + 80 : 140;
+                const currentScrollY = window.scrollY + basePaddingOffset;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+
+                    if (currentScrollY >= sectionTop && currentScrollY < (sectionTop + sectionHeight)) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSectionId) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentSectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
+                isNavThrottled = false;
             });
+            isNavThrottled = true;
         }
-    });
+    }, { passive: true });
 }
