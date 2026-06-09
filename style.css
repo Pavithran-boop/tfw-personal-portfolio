@@ -18,7 +18,7 @@
     --border-dark: #262930;
     /* Dark section rules */
 
-    /* Dark Mode (Ambition) */
+    /* Dark Theme */
     --bg-dark: #0B0C0E;
     /* Midnight Velvet */
     --text-dark-primary: #F3F3F5;
@@ -60,13 +60,18 @@ body {
     overflow-x: hidden;
 }
 
+body.is-locked {
+    overflow: hidden !important;
+    touch-action: none;
+}
+
 /* --- Kinetic Preloader System --- */
 .preloader {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100cqh;
     z-index: 10000;
     display: flex;
     align-items: center;
@@ -111,7 +116,7 @@ body {
 
 .preloader-brand {
     font-family: var(--font-serif);
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     letter-spacing: 0.1em;
     font-weight: 400;
 }
@@ -124,7 +129,6 @@ body {
     margin-top: 1rem;
 }
 
-/* Preloader Dismissal Animation Trigger */
 .preloader.fade-out .preloader-content {
     opacity: 0;
 }
@@ -137,7 +141,7 @@ body {
     transform: scaleY(0);
 }
 
-/* --- Fixed Top Progress Element --- */
+/* --- Fixed Progress Strip --- */
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -251,6 +255,7 @@ body {
     color: var(--text-secondary);
     position: relative;
     padding-bottom: 0.3rem;
+    text-decoration: none;
 }
 
 .nav-link::after {
@@ -274,10 +279,10 @@ body {
     width: 100%;
 }
 
-/* --- Structural Content Blocks --- */
+/* --- Section Headers (FIXED: Clipping Eliminated) --- */
 .section-header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     margin-bottom: 4rem;
 }
 
@@ -288,6 +293,8 @@ body {
     margin-right: 1.5rem;
     line-height: 1;
     display: inline-block;
+    white-space: nowrap;
+    /* Prevents split-line drops on small viewports */
 }
 
 .section-title {
@@ -297,6 +304,24 @@ body {
     display: inline-block;
 }
 
+/* Numeric Animation engine fallback since clip wrappers are gone */
+.section-num.reveal-text {
+    animation: fadeInNumeric 1.2s var(--ease-vogue) forwards;
+}
+
+@keyframes fadeInNumeric {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 0.15;
+        transform: translateY(0);
+    }
+}
+
+/* --- Content Modules --- */
 .hero-container {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -335,20 +360,6 @@ body {
     overflow: hidden;
 }
 
-.hero-img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(15%);
-    transition: var(--transition-smooth);
-}
-
-.hero-img:hover {
-    filter: grayscale(0%) scale(1.03);
-}
-
 .image-credit {
     display: block;
     text-align: right;
@@ -356,14 +367,6 @@ body {
     letter-spacing: 0.15em;
     color: var(--text-secondary);
     margin-top: 0.8rem;
-}
-
-.image-caption {
-    width: 100%;
-    max-width: 480px;
-    margin-top: 1.2rem;
-    padding-left: 0.5rem;
-    border-left: 2px solid var(--accent-gold);
 }
 
 .btn {
@@ -377,6 +380,7 @@ body {
     background: transparent;
     cursor: pointer;
     transition: var(--transition-fast);
+    text-decoration: none;
 }
 
 .btn-primary {
@@ -391,7 +395,7 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* --- Section 2 & 3 Foundations --- */
+/* --- Academics Module --- */
 .education-section {
     background-color: var(--bg-secondary);
 }
@@ -405,9 +409,20 @@ body {
     padding-left: 2rem;
 }
 
+.quote-author {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    padding-left: 2.2rem;
+}
+
 .institution-name {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+    font-weight: 400;
 }
 
 .grade-level {
@@ -438,6 +453,7 @@ body {
     color: var(--accent-gold);
 }
 
+/* --- Leadership Module --- */
 .achievement-card {
     border-left: 1px solid var(--border-color);
     padding: 1.5rem 0 2rem 2rem;
@@ -459,6 +475,8 @@ body {
 .card-title {
     font-size: 1.6rem;
     margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+    font-weight: 400;
 }
 
 .card-subtitle {
@@ -470,7 +488,7 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* --- Section 4: Ambition --- */
+/* --- Ambition Module --- */
 .ambition-section.dark-theme {
     background-color: var(--bg-dark);
     color: var(--text-dark-primary);
@@ -502,6 +520,7 @@ body {
     font-style: italic;
     margin-bottom: 4rem;
     max-width: 90%;
+    font-weight: 400;
 }
 
 .ambition-details-grid {
@@ -552,7 +571,7 @@ body {
     color: var(--text-dark-secondary);
 }
 
-/* --- Section 5: Collected Works --- */
+/* --- Collected Works Module --- */
 .works-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -572,10 +591,13 @@ body {
     font-size: 3rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
+    font-family: var(--font-serif);
+    font-weight: 400;
 }
 
 .works-lead-text {
     margin-bottom: 3rem;
+    color: var(--text-secondary);
 }
 
 .works-featured-image {
@@ -629,11 +651,14 @@ body {
     font-weight: 700;
     color: var(--accent-gold);
     letter-spacing: 0.15em;
+    display: block;
 }
 
 .works-item-title {
     font-size: 1.8rem;
     margin: 0.5rem 0 1rem 0;
+    font-family: var(--font-serif);
+    font-weight: 400;
 }
 
 .works-item-desc {
@@ -648,6 +673,8 @@ body {
     letter-spacing: 0.1em;
     color: var(--text-primary);
     display: inline-block;
+    text-decoration: none;
+    transition: var(--transition-fast);
 }
 
 .works-item-link:hover {
@@ -655,7 +682,7 @@ body {
     transform: translateX(5px);
 }
 
-/* --- Archival Footer Block --- */
+/* --- Editorial Archival Footer --- */
 .vogue-footer {
     background-color: var(--text-primary);
     color: var(--bg-primary);
@@ -674,6 +701,7 @@ body {
     font-family: var(--font-serif);
     font-size: 2.5rem;
     letter-spacing: 0.1em;
+    font-weight: 700;
 }
 
 .footer-tagline {
@@ -697,6 +725,7 @@ body {
     display: block;
     margin-bottom: 0.5rem;
     color: var(--bg-primary);
+    text-decoration: none;
 }
 
 .footer-location {
@@ -716,6 +745,7 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     color: var(--text-dark-secondary);
+    text-decoration: none;
 }
 
 .social-link:hover {
@@ -740,6 +770,7 @@ body {
     color: var(--accent-gold);
     font-weight: 600;
     letter-spacing: 0.1em;
+    text-decoration: none;
 }
 
 .back-to-top:hover {
@@ -747,30 +778,28 @@ body {
 }
 
 /* ==========================================================================
-   VOGUE EDITORIAL ANIMATION ENGINE (SLIDE REVEALS & SLIT MASKS)
+   ANIMATION INTERFACES (SLIT REVEALS & CURTAIN MASKS)
    ========================================================================== */
-
-/* Slit Mask Typography Container */
 .clip-mask {
     display: block;
     overflow: hidden;
     position: relative;
 }
 
-/* Base states for layout elements (Before Entering Scroll Viewport) */
 .reveal-text {
     display: block;
     transform: translateY(105%);
+    will-change: transform;
     transition: transform 1.2s var(--ease-vogue);
 }
 
 .anim-slide-up {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
+    will-change: transform, opacity;
     transition: opacity 1s var(--ease-vogue), transform 1s var(--ease-vogue);
 }
 
-/* Sequential Stagger Delays managed gracefully by layout parent classes */
 .layout-reveal.visible .reveal-text {
     transform: translateY(0);
 }
@@ -781,22 +810,17 @@ body {
 }
 
 .layout-reveal.visible .anim-slide-up:nth-child(1) {
-    transition-delay: 0.1s;
+    transition-delay: 0.05s;
 }
 
 .layout-reveal.visible .anim-slide-up:nth-child(2) {
-    transition-delay: 0.25s;
+    transition-delay: 0.15s;
 }
 
 .layout-reveal.visible .anim-slide-up:nth-child(3) {
-    transition-delay: 0.4s;
+    transition-delay: 0.25s;
 }
 
-.layout-reveal.visible .anim-slide-up:nth-child(4) {
-    transition-delay: 0.55s;
-}
-
-/* Elegant Editorial Curtain Image Reveal */
 .reveal-image-frame {
     position: relative;
     overflow: hidden;
@@ -816,26 +840,23 @@ body {
     z-index: 2;
 }
 
-.reveal-image-frame img,
 .reveal-image-frame .geometric-art {
     opacity: 0;
-    transform: scale(1.1);
+    transform: scale(1.08);
     transition: opacity 0.1s linear 0.4s, transform 1.2s var(--ease-vogue) 0.4s;
 }
 
-/* Active State for Image Framing */
 .reveal-image-frame.visible::after {
     transform: scaleX(0);
 }
 
-.reveal-image-frame.visible img,
 .reveal-image-frame.visible .geometric-art {
     opacity: 1;
     transform: scale(1);
 }
 
 /* ==========================================================================
-   GUNDAM HUD TARGET-LOCK MECHA SYSTEM INTERACTION MATRIX
+   GUNDAM TARGET HUD SYSTEM INTERACTIVE TOKENS
    ========================================================================== */
 .gundam-hud-trigger {
     position: relative;
@@ -848,13 +869,9 @@ body {
     border: 0 solid var(--accent-gold);
     opacity: 0;
     z-index: 5;
-    transition: width 0.6s var(--ease-gundam),
-        height 0.6s var(--ease-gundam),
-        opacity 0.3s ease,
-        transform 0.6s var(--ease-gundam);
+    transition: width 0.6s var(--ease-gundam), height 0.6s var(--ease-gundam), opacity 0.3s ease, transform 0.6s var(--ease-gundam);
 }
 
-/* Mechanical outward displacement paths */
 .hud-bracket.top-left {
     top: -20px;
     left: -20px;
@@ -887,7 +904,6 @@ body {
     transform: translate(25px, 25px);
 }
 
-/* Horizontal Laser Sync Tracker */
 .hud-laser-line {
     position: absolute;
     top: -20px;
@@ -899,57 +915,17 @@ body {
     opacity: 0;
 }
 
-/* Center Coordinate Alignment Target Grid */
-.hud-crosshair {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    width: 20px;
-    height: 20px;
-    opacity: 0;
-    transform: scale(2) rotate(45deg);
-    transition: transform 0.8s var(--ease-gundam), opacity 0.4s ease;
-}
-
-.hud-crosshair::before,
-.hud-crosshair::after {
-    content: '';
-    position: absolute;
-    background-color: var(--accent-gold);
-}
-
-.hud-crosshair::before {
-    top: 9px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-}
-
-.hud-crosshair::after {
-    top: 0;
-    left: 9px;
-    width: 2px;
-    height: 100%;
-}
-
-/* --- HUD TRIGGERED ACTIVE SYSTEM STATES --- */
 .gundam-hud-trigger.visible .hud-bracket {
     width: 35px;
     height: 35px;
     opacity: 1;
     transform: translate(0, 0);
     animation: hudGleam 0.15s steps(2) 0.6s infinite alternate;
-    /* Post-lock tech hum simulation */
 }
 
 .gundam-hud-trigger.visible .hud-laser-line {
     width: 90%;
     opacity: 1;
-}
-
-.gundam-hud-trigger.visible .hud-crosshair {
-    opacity: 0.4;
-    transform: scale(1) rotate(0deg);
 }
 
 @keyframes hudGleam {
@@ -963,11 +939,24 @@ body {
 }
 
 /* ==========================================================================
-   PRODUCTION MEDIA RESPONSIVE MATRIX
+   PRODUCTION RESPONSIVE SYSTEM (STRICT RESPONSIVE RECONSTRUCTION)
    ========================================================================== */
 @media (max-width: 992px) {
     html {
         font-size: 15px;
+    }
+
+    .section {
+        padding: 5.5rem 0;
+    }
+
+    .section-num {
+        font-size: 3rem;
+        margin-right: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
     }
 
     .grid-2,
@@ -976,7 +965,7 @@ body {
     .works-layout,
     .footer-top {
         grid-template-columns: 1fr !important;
-        gap: 4rem !important;
+        gap: 3.5rem !important;
     }
 
     .header-top {
@@ -1002,35 +991,40 @@ body {
     }
 
     .vogue-nav ul {
-        gap: 1.5rem 2rem;
+        gap: 1.2rem 2rem;
     }
 
     .hud-bracket,
-    .hud-laser-line,
-    .hud-crosshair {
+    .hud-laser-line {
         display: none !important;
     }
-
-    /* Strips mecha system on compact mobile viewports to ensure clean execution bounds */
 }
 
 @media (max-width: 600px) {
     .logo-main {
-        font-size: 3.4rem !important;
+        font-size: 3.2rem !important;
     }
 
     .logo-sub {
-        font-size: 1.3rem !important;
+        font-size: 1.2rem !important;
         letter-spacing: 0.3em;
         text-indent: 0.3em;
     }
 
     .hero-headline {
-        font-size: 2.4rem !important;
+        font-size: 2.3rem !important;
+    }
+
+    .section-num {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
     }
 
     .ambition-quote {
-        font-size: 1.9rem !important;
+        font-size: 1.8rem !important;
     }
 
     .section {
@@ -1039,7 +1033,7 @@ body {
 
     .footer-bottom {
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.2rem;
         text-align: center;
     }
 }
