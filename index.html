@@ -4,224 +4,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pavithran Bhagavan — Personal Portfolio</title>
-    <meta name="description"
-        content="Personal portfolio of Pavithran Bhagavan: Class 9 student at Chrysalis High, Football Captain, Science Awardee, and Aspiring Astrophysicist.">
-
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Pavithran // Editorial Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Montserrat:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Montserrat:wght@300;400;600;700&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="is-locked">
 
-    <div id="vogue-preloader" class="preloader">
+    <div class="preloader" id="preloader" role="dialog" aria-modal="true" aria-label="Loading portfolio">
         <div class="preloader-bg-shutter top"></div>
         <div class="preloader-bg-shutter bottom"></div>
         <div class="preloader-content">
-            <span class="preloader-edition">EDITION 2026</span>
-            <div class="preloader-brand-wrapper">
-                <div class="clip-mask">
-                    <h2 class="preloader-brand">PAVITHRAN BHAGAVAN</h2>
-                </div>
-            </div>
-            <span class="preloader-sub">PORTFOLIO EXHIBITION</span>
+            <span class="preloader-edition">EDITION v1.0 / 2026</span>
+            <h1 class="preloader-brand">PAVITHRAN</h1>
+            <span class="preloader-sub">INITIALIZING TELEMETRY...</span>
         </div>
     </div>
 
-    <div class="scroll-progress"></div>
+    <div class="scroll-progress" id="progress-bar" aria-hidden="true"></div>
 
-    <header class="vogue-header" id="header">
+    <header class="vogue-header">
         <div class="header-top">
-            <span class="edition-tag">EDITION 2026</span>
-            <div class="brand-container">
+            <span class="edition-tag">ISSUE NO. 11</span>
+            <div class="logo-wrap">
                 <h1 class="logo-main">PAVITHRAN</h1>
-                <h2 class="logo-sub">BHAGAVAN</h2>
+                <div class="logo-sub">BHAGAVAN</div>
             </div>
-            <span class="vol-tag">CLASS IX / CHRYSALIS HIGH</span>
+            <span class="vol-tag">VOL. 2026 // LEO</span>
         </div>
-
-        <nav class="vogue-nav" aria-label="Main Navigation">
+        <nav class="vogue-nav" aria-label="Main Portfolio Navigation">
             <ul>
-                <li><a href="#hero" class="nav-link active">COVER</a></li>
-                <li><a href="#education" class="nav-link">EDUCATION</a></li>
-                <li><a href="#achievements" class="nav-link">ACHIEVEMENTS</a></li>
-                <li><a href="#ambition" class="nav-link">AMBITION</a></li>
-                <li><a href="#works" class="nav-link">WORKS</a></li>
+                <li><a href="#hero" class="nav-link active">Overview</a></li>
+                <li><a href="#education" class="nav-link">Academic</a></li>
+                <li><a href="#leadership" class="nav-link">Leadership</a></li>
+                <li><a href="#ambition" class="nav-link">Ambition</a></li>
+                <li><a href="#works" class="nav-link">Collected Works</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero" class="section hero-section" aria-label="Cover Story">
-            <div class="container hero-container">
-                <div class="hero-text-col layout-reveal">
-                    <div class="section-label anim-slide-up">COVER STORY</div>
-                    <h2 class="hero-headline">
-                        <span class="clip-mask"><span class="reveal-text">The Rising Star</span></span>
-                        <span class="clip-mask"><span class="reveal-text">of Class IX</span></span>
-                    </h2>
-                    <p class="hero-lead anim-slide-up">
-                        Meet Pavithran Bhagavan—an academic scholar, award-winning science competitor, captain of the
-                        Chrysalis High football team, and champion essay writer.
-                    </p>
+        <section id="hero" class="section hero-section" aria-label="Introduction">
+            <div class="container hero-container layout-reveal">
+                <div class="hero-text-col">
+                    <h2 class="hero-headline anim-slide-up">Designing Systems for High-Stakes Horizons.</h2>
+                    <p class="hero-lead anim-slide-up">Student, athlete, and aspiring systems builder navigating the
+                        thresholds of computational science and tactical team leadership.</p>
                     <p class="hero-body anim-slide-up">
-                        Combining the precision of a science researcher with the tactical intelligence of a football
-                        captain, Pavithran is crafting a unique path. Guided by a profound fascination with the cosmos,
-                        his ultimate ambition is to become an astrophysicist and develop solutions that protect and
-                        elevate our planet.
+                        Based out of Chrysalis High, Pavithran combines rigorous multi-disciplinary academic curiosity
+                        with competitive field athletics. By day, he constructs data architectures and analyzes
+                        algorithmic logic; on the pitch, he pilots defensive formations and anchors team resilience.
                     </p>
-                    <div class="hero-cta-container anim-slide-up">
-                        <a href="#education" class="btn btn-primary">DISCOVER HIS JOURNEY</a>
+                    <div class="hero-actions anim-slide-up">
+                        <a href="#works" class="btn btn-primary">Examine Exhibits</a>
                     </div>
                 </div>
-
                 <div class="hero-image-col">
                     <div class="image-wrapper reveal-image-frame">
-                        <img src="hero_editorial.png"
-                            alt="Editorial art representing Pavithran Bhagavan's academic, sports, and cosmic pursuits"
-                            class="hero-img">
-                        <span class="image-credit">ILLUSTRATION: GEMINI ARTIST</span>
-                    </div>
-                    <div class="image-caption anim-slide-up">
-                        <p><strong>Fig 1.1</strong> — A visual representation of cosmic inquiry merged with athletic
-                            leadership: The worldview of Pavithran Bhagavan.</p>
+                        <div class="geometric-art" style="height: 400px;">
+                            <div class="art-circle" style="width: 150px; height: 150px;"></div>
+                            <div class="art-text">MASTHEAD GRAPH / SYSTEM ORIENTED</div>
+                        </div>
+                        <span class="image-credit">SOURCE: ARCHIVAL SECTOR 01</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="education" class="section education-section" aria-label="Academic Profile">
+        <section id="education" class="section education-section" aria-label="Academic Foundation">
             <div class="container section-container">
                 <div class="section-header layout-reveal">
-                    <span class="section-num clip-mask"><span class="reveal-text">01</span></span>
+                    <span class="section-num reveal-text">01</span>
                     <h2 class="section-title"><span class="clip-mask"><span class="reveal-text">ACADEMIC
                                 FOUNDATION</span></span></h2>
                 </div>
-
-                <div class="education-grid grid-2">
+                <div class="grid-2 education-layout">
                     <div class="education-quote layout-reveal">
-                        <blockquote class="anim-slide-up">
-                            "Intellectual discipline starts in the classroom. Education is not just about memorizing
-                            facts, but learning how to think and explore the unknown."
-                        </blockquote>
+                        <blockquote class="anim-slide-up">"The cosmos is within us. We are made of star-stuff. We are a
+                            way for the universe to know itself."</blockquote>
+                        <p class="quote-author anim-slide-up">— Carl Sagan, Cosmos</p>
                     </div>
-
                     <div class="education-details layout-reveal">
                         <h3 class="institution-name anim-slide-up">Chrysalis High</h3>
-                        <p class="grade-level anim-slide-up">Class IX (9th Grade) — Academic Session 2026</p>
-                        <p class="education-desc anim-slide-up">
-                            Currently pursuing secondary education with a rigorous focus on Mathematics, Physics, and
-                            Chemistry. Pavithran maintains an exemplary academic standing, actively leading class
-                            experiments, engaging in science exhibitions, and participating in advanced mathematics
-                            seminars.
-                        </p>
+                        <p class="grade-level anim-slide-up">Grade 11 / CBSE Curriculum</p>
                         <ul class="academic-highlights anim-slide-up">
-                            <li><strong>Focus Areas:</strong> Classical Mechanics, Astronomy Basics, Advanced Algebra.
-                            </li>
-                            <li><strong>Activities:</strong> Lead Representative of the Science Club, Literary and
-                                Debating Society member.</li>
+                            <li>Focus Electives: Physics, Mathematics, Computer Science</li>
+                            <li>Maintained Top Tier Academic Standing (2024–2026)</li>
+                            <li>Active contributor to the Student Science & Tech Council</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="achievements" class="section achievements-section" aria-label="Honors and Accomplishments">
+        <section id="leadership" class="section leadership-section" aria-label="Leadership Logs">
             <div class="container section-container">
                 <div class="section-header layout-reveal">
-                    <span class="section-num clip-mask"><span class="reveal-text">02</span></span>
-                    <h2 class="section-title"><span class="clip-mask"><span class="reveal-text">THE
-                                LAURELS</span></span></h2>
+                    <span class="section-num reveal-text">02</span>
+                    <h2 class="section-title"><span class="clip-mask"><span class="reveal-text">LEADERSHIP
+                                LOGS</span></span></h2>
                 </div>
-
-                <div class="achievements-grid grid-3">
-                    <div class="achievement-card layout-reveal">
-                        <div class="card-num anim-slide-up">I</div>
-                        <h3 class="card-title anim-slide-up">Science Competition</h3>
-                        <p class="card-subtitle anim-slide-up">Award Winner & Innovator</p>
-                        <p class="card-body anim-slide-up">
-                            Won prestigious awards at regional science fairs for research proposals on orbital debris
-                            management. Recognized for creative scientific methodology and structural analysis.
+                <div class="grid-3 achievement-grid layout-reveal">
+                    <div class="achievement-card anim-slide-up">
+                        <div class="card-num">01</div>
+                        <h3 class="card-title">Captaincy</h3>
+                        <p class="card-subtitle">Chrysalis First XI</p>
+                        <p class="card-text">Appointed Football Team Captain for the 2025–2026 season. Spearheaded
+                            tactical formations and unified a 15-man squad through inter-school tournaments.</p>
+                    </div>
+                    <div class="achievement-card anim-slide-up">
+                        <div class="card-num">02</div>
+                        <h3 class="card-title">Event Lead</h3>
+                        <p class="card-subtitle">Chrysalis Tech Fest</p>
+                        <p class="card-text">Organized and managed the competitive bracket for the 2025 Robotics
+                            Exhibition, managing registration tracks and hardware logistics for over 12 visiting teams.
                         </p>
                     </div>
-
-                    <div class="achievement-card layout-reveal">
-                        <div class="card-num anim-slide-up">II</div>
-                        <h3 class="card-title anim-slide-up">Football Captaincy</h3>
-                        <p class="card-subtitle anim-slide-up">Chrysalis High First XI</p>
-                        <p class="card-body anim-slide-up">
-                            Leading the school team as Captain. Spearheaded strategies that brought home back-to-back
-                            victories in regional tournaments. Focuses on tactical rigor and team cohesion.
-                        </p>
-                    </div>
-
-                    <div class="achievement-card layout-reveal">
-                        <div class="card-num anim-slide-up">III</div>
-                        <h3 class="card-title anim-slide-up">Essay Writing</h3>
-                        <p class="card-subtitle anim-slide-up">Literary Distinction</p>
-                        <p class="card-body anim-slide-up">
-                            Awarded top honors in essay writing contests. Celebrated for critical essays on
-                            environmental sustainability, ethics of technology, and the future of space exploration.
-                        </p>
+                    <div class="achievement-card anim-slide-up">
+                        <div class="card-num">03</div>
+                        <h3 class="card-title">Peer Mentor</h3>
+                        <p class="card-subtitle">Computer Science Labs</p>
+                        <p class="card-text">Conducted voluntary after-school code reviews and logic optimization
+                            workshops helping Grade 10 peers master basic object-oriented structures.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="ambition" class="section ambition-section dark-theme" aria-label="Future Aspirations">
-            <div class="container section-container gundam-hud-trigger">
-                <div class="hud-bracket top-left"></div>
-                <div class="hud-bracket top-right"></div>
-                <div class="hud-bracket bottom-left"></div>
-                <div class="hud-bracket bottom-right"></div>
-                <div class="hud-laser-line"></div>
-                <div class="hud-crosshair"></div>
-
+        <section id="ambition" class="section ambition-section dark-theme" aria-label="The Ambition">
+            <div class="container section-container">
                 <div class="section-header layout-reveal">
-                    <span class="section-num text-gold clip-mask"><span class="reveal-text">03</span></span>
-                    <h2 class="section-title text-white"><span class="clip-mask"><span class="reveal-text">COSMIC
-                                HORIZON</span></span></h2>
+                    <span class="section-num reveal-text text-gold">03</span>
+                    <h2 class="section-title text-white"><span class="clip-mask"><span class="reveal-text">THE
+                                AMBITION</span></span></h2>
                 </div>
-
                 <div class="ambition-content layout-reveal">
-                    <div class="ambition-tagline anim-slide-up">THE ASTROPHYSICIST</div>
-                    <h3 class="ambition-quote anim-slide-up">
-                        "To comprehend the stars is to understand our place in the universe. I want to decode cosmic
-                        secrets to help safeguard the future of our home planet."
-                    </h3>
-
-                    <div class="ambition-details-grid grid-2">
-                        <div class="ambition-col-left">
-                            <p class="ambition-text anim-slide-up">
-                                The choice of astrophysics is not just a scientific pursuit; it is a humanistic one. By
-                                understanding solar flares, planetary atmospheres, and deep-space mechanics, we can
-                                better protect Earth from cosmic hazards, prepare for interstellar communication, and
-                                unlock unlimited clean energy principles.
-                            </p>
+                    <p class="ambition-tagline anim-slide-up">FUTURE HORIZONS</p>
+                    <h3 class="ambition-quote anim-slide-up">"To bridge computational complexity with celestial
+                        curiosity—advancing how we look at, map, and secure orbital frameworks."</h3>
+                    <div class="grid-2 ambition-details-grid anim-slide-up">
+                        <div class="ambition-text">
+                            Pavithran’s ultimate objective lies at the intersection of Aerospace Engineering and Applied
+                            Computer Science. Driven by an early fascination with astrophysics and the logistical
+                            engineering of orbital mechanics, his path is oriented toward high-performance system
+                            designs that address real-world cosmic challenges.
                         </div>
-                        <div class="ambition-col-right">
-                            <h4 class="ambition-sub anim-slide-up">MISSION STATEMENTS</h4>
-                            <ul class="ambition-list anim-slide-up">
+                        <div class="ambition-objectives">
+                            <h4 class="ambition-sub">CORE INITIATIVES</h4>
+                            <ul class="ambition-list">
                                 <li>
-                                    <strong class="list-title">Cosmic Research</strong>
-                                    <span class="list-desc">Study stellar evolution and black hole
-                                        thermodynamics.</span>
+                                    <span class="list-title">Aerospace Computations</span>
+                                    <span class="list-desc">Mastering orbital debris tracking algorithms and real-time
+                                        path telemetry vectors.</span>
                                 </li>
                                 <li>
-                                    <strong class="list-title">Global Stewardship</strong>
-                                    <span class="list-desc">Apply planetary science theories to improve Earth’s climate
-                                        modeling.</span>
-                                </li>
-                                <li>
-                                    <strong class="list-title">Scientific Education</strong>
-                                    <span class="list-desc">Make complex science accessible to inspire the next
-                                        generation.</span>
+                                    <span class="list-title">Athletic Command</span>
+                                    <span class="list-desc">Applying principles of physical conditioning, high-stress
+                                        resilience, and sports strategy to collaborative labs.</span>
                                 </li>
                             </ul>
                         </div>
@@ -239,11 +182,10 @@
                 <div class="hud-laser-line"></div>
 
                 <div class="section-header layout-reveal">
-                    <span class="section-num clip-mask"><span class="reveal-text">04</span></span>
+                    <span class="section-num reveal-text">04</span>
                     <h2 class="section-title"><span class="clip-mask"><span class="reveal-text">COLLECTED
                                 WORKS</span></span></h2>
                 </div>
-
                 <div class="works-layout">
                     <div class="works-intro-col layout-reveal">
                         <span class="works-meta-tag anim-slide-up">CURATED EXHIBITS</span>
@@ -255,44 +197,35 @@
                         <div class="works-featured-image reveal-image-frame">
                             <div class="geometric-art">
                                 <div class="art-circle"></div>
-                                <div class="art-line"></div>
-                                <div class="art-diagonal"></div>
                                 <div class="art-text">CELESTIAL / ATHLETIC</div>
                             </div>
                             <span class="image-credit">COMPOSITION: ARCHIVAL LABS</span>
                         </div>
                     </div>
-
                     <div class="works-list-col layout-reveal">
                         <article class="works-item anim-slide-up">
-                            <span class="works-item-num">01 / ASTRONOMY</span>
+                            <span class="works-item-num">EXHIBIT 4.1 / ASTRONOMY</span>
                             <h4 class="works-item-title">Project Orbit-Clean</h4>
-                            <p class="works-item-desc">
-                                A comprehensive research proposal targeting Low Earth Orbit space debris recovery using
-                                passive electromagnetic sweepers. Presented at regional high school science symposiums.
-                            </p>
+                            <p class="works-item-desc">A comprehensive research proposal targeting Low Earth Orbit space
+                                debris recovery using passive electromagnetic sweepers. Presented at regional high
+                                school science symposiums.</p>
                             <a href="assets/orbit-clean-proposal.pdf" class="works-item-link" target="_blank"
                                 rel="noopener noreferrer">READ THE RESEARCH PROPOSAL →</a>
                         </article>
-
                         <article class="works-item anim-slide-up">
-                            <span class="works-item-num">02 / LEADERSHIP</span>
+                            <span class="works-item-num">EXHIBIT 4.2 / LEADERSHIP</span>
                             <h4 class="works-item-title">The First XI Playbook</h4>
-                            <p class="works-item-desc">
-                                Tactical diagrams, performance analyses, and communication logs curated during the
-                                2025-2026 football season as Chrysalis High team captain.
-                            </p>
+                            <p class="works-item-desc">Tactical diagrams, performance analyses, and communication logs
+                                curated during the 2025-2026 football season as Chrysalis High team captain.</p>
                             <a href="mailto:pavithranbhagavan@gmail.com?subject=The First XI Playbook"
                                 class="works-item-link">REQUEST ATHLETIC LOGS →</a>
                         </article>
-
                         <article class="works-item anim-slide-up">
-                            <span class="works-item-num">03 / LITERARY</span>
+                            <span class="works-item-num">EXHIBIT 4.3 / LITERARY</span>
                             <h4 class="works-item-title">Stardust & Stewardship</h4>
-                            <p class="works-item-desc">
-                                A compilation of award-winning essays examining the ethical limits of planetary resource
-                                exploitation and the role of youth in local astronomy initiatives.
-                            </p>
+                            <p class="works-item-desc">A compilation of award-winning essays examining the ethical
+                                limits of planetary resource exploitation and the role of youth in local astronomy
+                                initiatives.</p>
                             <a href="mailto:pavithranbhagavan@gmail.com?subject=Stardust Essays"
                                 class="works-item-link">READ SELECTED ESSAYS →</a>
                         </article>
@@ -303,33 +236,31 @@
     </main>
 
     <footer class="vogue-footer">
-        <div class="container footer-container">
+        <div class="container">
             <div class="footer-top">
                 <div class="footer-brand-col">
-                    <span class="footer-logo">P. B.</span>
-                    <p class="footer-tagline">Academic, Athlete & Aspiring Astrophysicist</p>
+                    <h2 class="footer-logo">PAVITHRAN B.</h2>
+                    <p class="footer-tagline">Systems, Leadership, and Astronomy Portfolio.</p>
                 </div>
-
                 <div class="footer-contact-col">
-                    <span class="footer-label">CORRESPONDENCE</span>
+                    <span class="footer-label">COMMUNICATIONS INTERFACE</span>
                     <a href="mailto:pavithranbhagavan@gmail.com" class="footer-email">pavithranbhagavan@gmail.com</a>
-                    <span class="footer-location">Bengaluru, India</span>
+                    <span class="footer-location">Bengaluru, KA, India // UTC+5:30</span>
                 </div>
-
-                <div class="footer-social-col">
-                    <span class="footer-label">CHANNELS</span>
+                <div class="footer-index-col">
+                    <span class="footer-label">INDEX CHANNELS</span>
                     <ul class="social-links">
-                        <li><a href="https://instagram.com" class="social-link" target="_blank"
-                                rel="noopener noreferrer">INSTAGRAM</a></li>
                         <li><a href="https://linkedin.com" class="social-link" target="_blank"
-                                rel="noopener noreferrer">LINKEDIN</a></li>
+                                rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://github.com" class="social-link" target="_blank"
+                                rel="noopener noreferrer">GitHub Matrix</a></li>
                     </ul>
                 </div>
             </div>
             <hr class="footer-divider">
             <div class="footer-bottom">
-                <p class="copyright">PAVITHRAN BHAGAVAN &copy; 2026. ALL RIGHTS RESERVED.</p>
-                <a href="#header" class="back-to-top">BACK TO TOP ↑</a>
+                <span class="copyright-text">© 2026 ARCHIVAL LABS. ALL RIGHTS RESERVED. SPEC-VOGUE-GUNDAM-01.</span>
+                <a href="#hero" class="back-to-top" id="back-to-top">RETURN TO APEX ↑</a>
             </div>
         </div>
     </footer>
